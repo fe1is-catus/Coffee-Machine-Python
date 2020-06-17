@@ -6,10 +6,12 @@ need_coffe = input()
 print('For ' + str(need_coffe) + ' cups of coffee you will need:')
 
 def calculate_cofee(need_coffe):
- water = need_coffe*200
- milk = need_coffe*50
- coffee_beans = need_coffe*15
+ water = int(need_coffe)*200
+ milk = int(need_coffe)*50
+ coffee_beans = int(need_coffe)*15
  return water, milk, coffee_beans
+
+water, milk, coffee_beans = calculate_cofee(need_coffe)
 
 print(str(water) + ' ml of water')
 print(str(milk) + ' ml of milk')
