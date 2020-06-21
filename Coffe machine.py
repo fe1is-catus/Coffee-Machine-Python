@@ -3,6 +3,8 @@
 print('Write how many cups of coffee you will need:')
 need_coffe = input()
 
+#check input type?
+
 print('For ' + str(need_coffe) + ' cups of coffee you will need:')
 
 def calculate_cofee(need_coffe):
