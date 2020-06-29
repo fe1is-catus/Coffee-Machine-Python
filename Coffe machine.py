@@ -15,9 +15,10 @@ has_cofee_cup = has_cofee_cups(has_water, has_milk, has_beans)
 print('Write how many cups of coffee you will need:')
 need_coffe_cups = input()
 
+more_cups = has_cofee_cup - need_coffe_cups
 
 if int(need_coffe_cups) < has_cofee_cup:
-    print('Yes, I can make that amount of coffee')
+    print('Yes, I can make that amount of coffee (and even {more_cups} more than that)')
 elif int(need_coffe_cups) == has_cofee_cup:
     print('Yes, I can make that amount of coffee')
 else:
