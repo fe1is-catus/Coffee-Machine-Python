@@ -1,4 +1,4 @@
-#cofee
+#coffee
 
 has_water = input('Write how many ml of water the coffee machine has:')
 has_milk = input('Write how many ml of milk the coffee machine has:')
@@ -24,8 +24,6 @@ elif int(need_coffe_cups) == has_cofee_cup:
 else:
     print(f"No, I can make only {has_cofee_cup} cups of coffee")
 
-
-
 print('For ' + str(need_coffe_cups) + ' cups of coffee you will need:')
 
 def calculate_cofee(need_coffe_cups):
@@ -33,7 +31,6 @@ def calculate_cofee(need_coffe_cups):
  milk = int(need_coffe_cups)*50
  coffee_beans = int(need_coffe_cups)*15
  return water, milk, coffee_beans
-
 water, milk, coffee_beans = calculate_cofee(need_coffe_cups)  # Returning Multiple Values in Python
 
 print(str(water) + ' ml of water')
