@@ -61,52 +61,56 @@ state_before_actions = str(f"""The coffee machine has
 {default_money} of money""")
 print(state_before_actions)
 
-def calc_espr (default_water, default_milk, default_beans, default_cups, default_money):
-    after_action_water = default_water - 250
-    after_action_milk = default_milk
-    after_action_beans = default_beans - 16
-    after_action_cups = default_cups - 1
-    after_action_money = default_money - 4
-    return after_action_water, after_action_milk, after_action_beans, after_action_cups, after_action_money
-after_action_water, after_action_milk, after_action_beans, after_action_cups, after_action_money = calc_espr (default_water, default_milk, default_beans, default_cups, default_money)
- 
-def calc_latte (default_water, default_milk, default_beans, default_cups, default_money):
-    after_action_water = default_water - 350
-    after_action_milk = default_milk - 75
-    after_action_beans = default_beans - 20
-    after_action_cups = default_cups - 1
-    after_action_money = default_money - 7
-    return after_action_water, after_action_milk, after_action_beans, after_action_cups, after_action_money
-after_action_water, after_action_milk, after_action_beans, after_action_cups, after_action_money = calc_espr (default_water, default_milk, default_beans, default_cups, default_money)
 
-def calc_cappuc (default_water, default_milk, default_beans, default_cups, default_money):
-    after_action_water = default_water - 200
-    after_action_milk = default_milk - 100
-    after_action_beans = default_beans - 12
-    after_action_cups = default_cups - 1
-    after_action_money = default_money - 6
-    return after_action_water, after_action_milk, after_action_beans, after_action_cups, after_action_money
-after_action_water, after_action_milk, after_action_beans, after_action_cups, after_action_money = calc_espr (default_water, default_milk, default_beans, default_cups, default_money)
-
-state_after_action = str(f"""The coffee machine has:
-{after_action_water} of water
-{after_action_milk} of milk
-{after_action_beans} of coffee beans
-{after_action_cups} of disposable cups
-{after_action_money} of money""")
+# state_after_action = str(f"""The coffee machine has:
+# {after_action_water} of water
+# {after_action_milk} of milk
+# {after_action_beans} of coffee beans
+# {after_action_cups} of disposable cups
+# {after_action_money} of money""")
 
 user_action = input('Write action (buy, fill, take):')
 
 if user_action == 'buy':
+    def calc_espr (default_water, default_milk, default_beans, default_cups, default_money):
+        after_action_water = default_water - 250
+        after_action_milk = default_milk
+        after_action_beans = default_beans - 16
+        after_action_cups = default_cups - 1
+        after_action_money = default_money - 4
+        return after_action_water, after_action_milk, after_action_beans, after_action_cups, after_action_money
+    after_action_water, after_action_milk, after_action_beans, after_action_cups, after_action_money = calc_espr (default_water, default_milk, default_beans, default_cups, default_money)
+    def calc_latte (default_water, default_milk, default_beans, default_cups, default_money):
+        after_action_water = default_water - 350
+        after_action_milk = default_milk - 75
+        after_action_beans = default_beans - 20
+        after_action_cups = default_cups - 1
+        after_action_money = default_money - 7
+        return after_action_water, after_action_milk, after_action_beans, after_action_cups, after_action_money
+    after_action_water, after_action_milk, after_action_beans, after_action_cups, after_action_money = calc_espr (default_water, default_milk, default_beans, default_cups, default_money)
+    def calc_cappuc (default_water, default_milk, default_beans, default_cups, default_money):
+        after_action_water = default_water - 200
+        after_action_milk = default_milk - 100
+        after_action_beans = default_beans - 12
+        after_action_cups = default_cups - 1
+        after_action_money = default_money - 6
+        return after_action_water, after_action_milk, after_action_beans, after_action_cups, after_action_money
+    after_action_water, after_action_milk, after_action_beans, after_action_cups, after_action_money = calc_espr (default_water, default_milk, default_beans, default_cups, default_money)
+    state_after_action = str(f"""The coffee machine has:
+    {after_action_water} of water
+    {after_action_milk} of milk
+    {after_action_beans} of coffee beans
+    {after_action_cups} of disposable cups
+    {after_action_money} of money""")
     coffee_type = input('What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino:')
     if coffee_type == '1':
-        calc_espr(default_water, default_milk, default_beans, default_cups, default_money)
+        calc_espr (default_water, default_milk, default_beans, default_cups, default_money)
         print(state_after_action)
     elif coffee_type == '2':
-        calc_latte(default_water, default_milk, default_beans, default_cups, default_money)
+        calc_latte (default_water, default_milk, default_beans, default_cups, default_money)        
         print(state_after_action)
     elif coffee_type == '3':
-        calc_cappuc(default_water, default_milk, default_beans, default_cups, default_money)
+        calc_cappuc (default_water, default_milk, default_beans, default_cups, default_money)        
         print(state_after_action)	
 	
 if user_action == 'fill':
@@ -119,12 +123,25 @@ if user_action == 'fill':
     cups_add = input('Write how many disposable cups of coffee do you want to add:')
     after_action_cups = default_cups + int(cups_add)
     after_action_money = default_money
+    state_after_action = str(f"""The coffee machine has:
+    {after_action_water} of water
+    {after_action_milk} of milk
+    {after_action_beans} of coffee beans
+    {after_action_cups} of disposable cups
+    {after_action_money} of money""")
     print(state_after_action)
 	
 if user_action == 'take':
-    print(f'I gave you ${after_action_money}')
+    print(f'I gave you ${default_money}')
     after_action_water = default_water
+    after_action_milk = default_milk
     after_action_money = 0
     after_action_beans = default_beans
     after_action_cups = default_cups
+    state_after_action = str(f"""The coffee machine has:
+    {after_action_water} of water
+    {after_action_milk} of milk
+    {after_action_beans} of coffee beans
+    {after_action_cups} of disposable cups
+    {after_action_money} of money""")
     print(state_after_action)
