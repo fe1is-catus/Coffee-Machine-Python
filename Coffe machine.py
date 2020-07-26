@@ -129,3 +129,165 @@ if user_action == 'take':
     {after_action_cups} of disposable cups
     {after_action_money} of money""")
     print(state_after_action)
+
+#Stage 5/6: On a coffee loop
+
+default_water = 400
+default_milk = 540
+default_beans = 120
+default_cups = 9
+default_money = 550
+
+action_water = 0
+action_milk = 0
+action_beans = 0
+action_cups = 0
+action_money = 0
+
+def calc_after_action(action_water, action_milk, action_beans, action_cups, action_money, default_water, default_milk, default_beans, default_cups, default_money):
+    after_action_water = default_water - action_water
+    after_action_milk = default_milk - action_milk
+    after_action_beans = default_beans - action_beans
+    after_action_cups = default_cups - action_cups
+    after_action_money = default_money + action_money
+    return after_action_water, after_action_milk, after_action_beans, after_action_cups, after_action_money
+after_action_water, after_action_milk, after_action_beans, after_action_cups, after_action_money = calc_after_action(action_water, action_milk, action_beans, action_cups, action_money, default_water, default_milk, default_beans, default_cups, default_money)
+
+def fill(default_water, default_milk, default_beans, default_cups):
+    water_add = input('Write how many ml of water do you want to add:')
+    after_action_water = default_water + int(water_add)
+    milk_add = input('Write how many ml of milk do you want to add:')
+    after_action_milk = default_milk + int(milk_add)
+    beans_add = input('Write how many grams of coffee beans do you want to add:')
+    after_action_beans = default_beans + int(beans_add)
+    cups_add = input('Write how many disposable cups of coffee do you want to add:')
+    after_action_cups = default_cups + int(cups_add)
+    return after_action_water, after_action_milk, after_action_beans, after_action_cups
+after_action_water, after_action_milk, after_action_beans, after_action_cups = fill(default_water, default_milk, default_beans, default_cups)
+
+def take(after_action_money):
+    print(f'I gave you ${after_action_money}')
+    after_action_money = 0
+    return after_action_money
+    
+def buy(after_action_water, after_action_milk, after_action_beans, after_action_cups, after_action_money, coffee_type):
+    def calc_cofee (coffee_type, default_water, default_milk, default_beans, default_cups, default_money):
+        if coffee_type == '1':
+            if default_water > after_action_water >= 250:
+                action_water = after_action_water - 250
+            elif after_action_water == default_water:
+                action_water = default_water - 250
+            else:
+                print("Sorry, not enough water")
+            action_milk = default_milk
+            if default_beans > after_action_beans >= 16:
+                action_beans = after_action_beans - 16
+            elif default_beans == after_action_beans:
+                action_beans = default_beans - 16
+            else:
+                print("Sorry, not enough beans")    
+            if default_cups > after_action_cups >= 1:
+                action_cups = after_action_cups - 1
+            elif default_cups == after_action_cups:
+                action_cups = default_cups - 1
+            else:
+                print("Sorry, not enough cups")
+            if after_action_money != default_money:
+                action_money = after_action_money + 4
+            else:
+                action_money = default_money + 4           
+            calc_after_action(action_water, action_milk, action_beans, action_cups, action_money, default_water, default_milk, default_beans, default_cups, default_money)
+        elif coffee_type == '2':
+            if default_water > after_action_water >= 350:
+                action_water = after_action_water - 350
+            elif after_action_water == default_water:
+                action_water = default_water - 350
+            else:
+                print("Sorry, not enough water")
+                
+            if default_milk > after_action_milk >= 75:
+                action_milk = after_action_milk - 75
+            elif default_milk == after_action_milk:
+                action_milk = default_milk - 75
+            else:
+                print("Sorry, not enough milk")
+                
+            if default_beans > after_action_beans >= 20:
+                action_beans = after_action_beans - 20
+            elif default_beans == after_action_beans:
+                action_beans = default_beans - 20
+            else:
+                print("Sorry, not enough beans")
+            
+            if default_cups > after_action_cups >= 1:
+                action_cups = after_action_cups - 1
+            elif default_cups == after_action_cups:
+                action_cups = default_cups - 1
+            else:
+                print("Sorry, not enough cups")
+            
+            if after_action_money != default_money:
+                action_money = after_action_money + 7
+            else:
+                action_money = default_money + 7
+            calc_after_action(action_water, action_milk, action_beans, action_cups, action_money, default_water, default_milk, default_beans, default_cups, default_money)
+        elif coffee_type == '3':
+            if default_water > after_action_water >= 200:
+                action_water = after_action_water - 200
+            elif after_action_water == default_water:
+                action_water = default_water - 200
+            else:
+                print("Sorry, not enough water")
+            if default_milk > after_action_milk >= 100:
+                action_milk = after_action_milk - 100
+            elif default_milk == after_action_milk:
+                action_milk = default_milk - 100
+            else:
+                print("Sorry, not enough milk")
+            
+            if default_beans > after_action_beans >= 12:
+                action_beans = after_action_beans - 12
+            elif default_beans == after_action_beans:
+                action_beans = default_beans - 12
+            else:
+                print("Sorry, not enough beans")
+            
+            if default_cups > after_action_cups >= 1:
+                action_cups = after_action_cups - 1
+            elif default_cups == after_action_cups:
+                action_cups = default_cups - 1
+            else:
+                print("Sorry, not enough cups")
+            
+            if after_action_money != default_money:
+                action_money = after_action_money + 6
+            else:
+                action_money = default_money + 6
+            calc_after_action(action_water, action_milk, action_beans, action_cups, action_money, default_water, default_milk, default_beans, default_cups, default_money)
+        # else:
+        #     break
+        return action_water, action_milk, action_beans, action_cups, action_money
+    action_water, action_milk, action_beans, action_cups, action_money = calc_cofee (coffee_type, default_water, default_milk, default_beans, default_cups, default_money)
+    
+while True:
+    user_action = input('Write action (buy, fill, take, remaining, exit):')
+    if user_action == 'buy':
+        print('What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu:')
+        coffee_type = input()
+        buy(after_action_water, after_action_milk, after_action_beans, after_action_cups, after_action_money, coffee_type)
+    if user_action == 'fill':
+        fill(default_water, default_milk, default_beans, default_cups)
+    if user_action == 'take':
+        take(after_action_money)
+    if user_action == 'remaining':
+        # global after_action_water, after_action_milk, after_action_beans, after_action_cups, after_action_money
+        calc_after_action(action_water, action_milk, action_beans, action_cups, action_money, default_water, default_milk, default_beans, default_cups, default_money)
+        state_after_action = str(f"""The coffee machine has:
+    {after_action_water} of water
+    {after_action_milk} of milk
+    {after_action_beans} of coffee beans
+    {after_action_cups} of disposable cups
+    {after_action_money} of money""")    
+    print(state_after_action)
+    if user_action == 'exit':
+        break
