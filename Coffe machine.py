@@ -233,7 +233,7 @@ def fill(water, milk, beans, cups, money, coffee_type, espresso_water, espresso_
     else:
         cups += int(cups_add)
     return water, milk, beans, cups, money
-water, milk, beans, cups, money, coffee_type, espresso_water, espresso_beans, espresso_cups, latte_water, latte_beans, latte_cups, cappuccino_water, cappuccino_beans, cappuccino_cups, latte_milk, cappuccino_milk = fill(water, milk, beans, cups, money, coffee_type, espresso_water, espresso_beans, espresso_cups, latte_water, latte_beans, latte_cups, cappuccino_water, cappuccino_beans, cappuccino_cups, latte_milk, cappuccino_milk)
+water, milk, beans, cups, money = fill(water, milk, beans, cups, money, coffee_type, espresso_water, espresso_beans, espresso_cups, latte_water, latte_beans, latte_cups, cappuccino_water, cappuccino_beans, cappuccino_cups, latte_milk, cappuccino_milk)
 
 def take(money):
     print(f'I gave you ${money}')
@@ -247,10 +247,11 @@ while True:
         coffee_type = input()
         buy(water, milk, beans, cups, money, coffee_type, espresso_water, espresso_beans, espresso_cups, latte_water, latte_beans, latte_cups, cappuccino_water, cappuccino_beans, cappuccino_cups, latte_milk, cappuccino_milk)
     if user_action == 'fill':
-        fill(water, milk, beans, cups, money)
+        fill(water, milk, beans, cups, money, coffee_type, espresso_water, espresso_beans, espresso_cups, latte_water, latte_beans, latte_cups, cappuccino_water, cappuccino_beans, cappuccino_cups, latte_milk, cappuccino_milk)
     if user_action == 'take':
         take(money)
     if user_action == 'remaining':
         remaining(water, milk, beans, cups, money)
     if user_action == 'exit':
         break
+
