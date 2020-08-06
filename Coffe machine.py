@@ -154,15 +154,15 @@ cappuccino_water = 200
 cappuccino_beans = 12
 cappuccino_milk = 100
 cappuccino_cups = 1
-cappuccino_money = 7
+cappuccino_money = 6
 
 def remaining(water, milk, beans, cups, money):
     state_after_action = str(f"""The coffee machine has:
-    {water} of water
-    {milk} of milk
-    {beans} of coffee beans
-    {cups} of disposable cups
-    {money} of money""")    
+{water} of water
+{milk} of milk
+{beans} of coffee beans
+{cups} of disposable cups
+{money} of money""")    
     print(state_after_action)
 
 coffee_type = '0'
@@ -177,81 +177,103 @@ def check_ingr(espresso_water, espresso_beans, espresso_cups, latte_water, latte
     elif cups < 1:
         print("Sorry, not enough cups")
 
-def buy(water, milk, beans, cups, money, coffee_type, espresso_water, espresso_beans, espresso_cups, latte_water, latte_beans, latte_cups, cappuccino_water, cappuccino_beans, cappuccino_cups, latte_milk, cappuccino_milk):
+def buy():
+    global water
+    global milk
+    global beans
+    global cups
+    global money 
     if coffee_type == '1' and water >= espresso_water and beans >= espresso_beans and cups >= 1:
         print("I have enough resources, making you a coffee!")
         water -= espresso_water
         beans -= espresso_beans
         cups -= espresso_cups
+        milk -= espresso_milk
         money += espresso_money
     elif coffee_type == '2' and water >= latte_water and beans >= latte_beans and cups >= 1:
         print("I have enough resources, making you a coffee!")
         water -= latte_water
         beans -= latte_beans
         cups -= latte_cups
+        milk -= latte_milk
         money += latte_money
     elif coffee_type == '3' and water >= cappuccino_water and beans >= cappuccino_beans and cups >= 1:
         print("I have enough resources, making you a coffee!")
         water -= cappuccino_water
         beans -= cappuccino_beans
         cups -= cappuccino_cups
+        milk -= cappuccino_milk
         money += cappuccino_money
     elif coffee_type == 'back':
         user_action
     else:
         check_ingr(espresso_water, espresso_beans, espresso_cups, latte_water, latte_beans, latte_cups, cappuccino_water, cappuccino_beans, cappuccino_cups, latte_milk, cappuccino_milk)
-    return water, milk, beans, cups, money
-water, milk, beans, cups, money = buy(water, milk, beans, cups, money, coffee_type, espresso_water, espresso_beans, espresso_cups, latte_water, latte_beans, latte_cups, cappuccino_water, cappuccino_beans, cappuccino_cups, latte_milk, cappuccino_milk)
+    return
+# water, milk, beans, cups, money = buy(water, milk, beans, cups, money, coffee_type, espresso_water, espresso_beans, espresso_cups, latte_water, latte_beans, latte_cups, cappuccino_water, cappuccino_beans, cappuccino_cups, latte_milk, cappuccino_milk)
 
-def fill(water, milk, beans, cups, money, coffee_type, espresso_water, espresso_beans, espresso_cups, latte_water, latte_beans, latte_cups, cappuccino_water, cappuccino_beans, cappuccino_cups, latte_milk, cappuccino_milk):
+def fill():
+    global water
+    global milk
+    global beans
+    global cups
+    global money
     water_add = input('Write how many ml of water do you want to add:')
     if water_add == 'remaining':
         remaining(water, milk, beans, cups, money)
     elif water_add == 'buy':
-        buy(water, milk, beans, cups, money, coffee_type, espresso_water, espresso_beans, espresso_cups, latte_water, latte_beans, latte_cups, cappuccino_water, cappuccino_beans, cappuccino_cups, latte_milk, cappuccino_milk)
+        buy()
     else:
         water += int(water_add)
     milk_add = input('Write how many ml of milk do you want to add:')
     if milk_add == 'remaining':
         remaining(water, milk, beans, cups, money)
     elif milk_add == 'buy':
-        buy(water, milk, beans, cups, money, coffee_type, espresso_water, espresso_beans, espresso_cups, latte_water, latte_beans, latte_cups, cappuccino_water, cappuccino_beans, cappuccino_cups, latte_milk, cappuccino_milk)
+        buy()
     else:
         milk += int(milk_add)
     beans_add = input('Write how many grams of coffee beans do you want to add:')
     if beans_add == 'remaining':
         remaining(water, milk, beans, cups, money)
     elif beans_add == 'buy':
-        buy(water, milk, beans, cups, money, coffee_type, espresso_water, espresso_beans, espresso_cups, latte_water, latte_beans, latte_cups, cappuccino_water, cappuccino_beans, cappuccino_cups, latte_milk, cappuccino_milk)
+        buy()
     else:
         beans += int(beans_add)
     cups_add = input('Write how many disposable cups of coffee do you want to add:')
     if cups_add == 'remaining':
         remaining(water, milk, beans, cups, money)
     elif cups_add == 'buy':
-        buy(water, milk, beans, cups, money, coffee_type, espresso_water, espresso_beans, espresso_cups, latte_water, latte_beans, latte_cups, cappuccino_water, cappuccino_beans, cappuccino_cups, latte_milk, cappuccino_milk)
+        buy()
     else:
         cups += int(cups_add)
-    return water, milk, beans, cups, money
-water, milk, beans, cups, money = fill(water, milk, beans, cups, money, coffee_type, espresso_water, espresso_beans, espresso_cups, latte_water, latte_beans, latte_cups, cappuccino_water, cappuccino_beans, cappuccino_cups, latte_milk, cappuccino_milk)
+    return
+# water, milk, beans, cups, money = fill(water, milk, beans, cups, money, coffee_type, espresso_water, espresso_beans, espresso_cups, latte_water, latte_beans, latte_cups, cappuccino_water, cappuccino_beans, cappuccino_cups, latte_milk, cappuccino_milk)
 
-def take(money):
+def take():
+    global money
     print(f'I gave you ${money}')
-    money = 0
-    return money
+    money -= money
+    return
 
 while True:
     user_action = input('Write action (buy, fill, take, remaining, exit):')
     if user_action == 'buy':
         print('What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu:')
         coffee_type = input()
-        buy(water, milk, beans, cups, money, coffee_type, espresso_water, espresso_beans, espresso_cups, latte_water, latte_beans, latte_cups, cappuccino_water, cappuccino_beans, cappuccino_cups, latte_milk, cappuccino_milk)
+        buy()
     if user_action == 'fill':
-        fill(water, milk, beans, cups, money, coffee_type, espresso_water, espresso_beans, espresso_cups, latte_water, latte_beans, latte_cups, cappuccino_water, cappuccino_beans, cappuccino_cups, latte_milk, cappuccino_milk)
+        fill()
     if user_action == 'take':
-        take(money)
+        take()
     if user_action == 'remaining':
         remaining(water, milk, beans, cups, money)
     if user_action == 'exit':
         break
+
+
+
+
+
+
+
+
 
