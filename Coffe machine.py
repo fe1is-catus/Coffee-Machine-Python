@@ -270,7 +270,87 @@ while True:
         break
 
 
+#6/6 classes. End my 1st project 
 
+class CoffeeMachine:
+
+    def __init__(self):
+        self.water = 400
+        self.milk = 540
+        self.coffee = 120
+        self.cups = 9
+        self.money = 550
+
+    def menu(self):
+        while True:
+            print("\nWrite action (buy, fill, take, remaining, exit):")
+            action = input()
+            if action == "buy":
+                self.buy()
+            elif action == "fill":
+                self.fill()
+            elif action == "take":
+                self.take()
+            elif action == "remaining":
+                self.display_machine()
+            elif action == "exit":
+                exit()
+            else:
+                print("Option not available")
+
+    def fill(self):
+        self.water += int(input("Write how many ml of water do you want to add:\n>"))
+        self.milk += int(input("Write how many ml of milk do you want to add:\n>"))
+        self.coffee += int(input("Write how many grams of coffee beans do you want to add:\n>"))
+        self.cups += int(input("Write how many disposable cups of coffee do you want to add:\n>"))
+
+    def take(self):
+        print(f"\nI gave you ${self.money}")
+        self.money = 0
+
+    def buy(self):
+        print("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu")
+        choice = input()
+        if choice == "1":
+            self.make_coffee(250, 1, 16, 4)
+        elif choice == "2":
+            self.make_coffee(350, 75, 20, 7)
+        elif choice == "3":
+            self.make_coffee(200, 100, 12, 6)
+        elif choice == "back":
+            self.menu()
+        else:
+            print("Option not available")
+
+    def make_coffee(self, water, milk, coffee, money):
+        if min(self.water // water, self.milk // milk, self.coffee // coffee) >= 1 and self.cups > 0:
+            print("I have enough resources, making you a coffee!")
+            self.water -= water
+            self.milk -= milk if milk != 1 else 0
+            self.coffee -= coffee
+            self.cups -= 1
+            self.money += money
+        else:
+            if self.water // water < 1:
+                print("Sorry, not enough water!")
+            elif self.milk // milk < 1:
+                print("Sorry, not enough milk!")
+            elif self.coffee // coffee < 1:
+                print("Sorry, not enough coffee!")
+            else:
+                print("Sorry, not enough cups!")
+
+
+    def display_machine(self):
+        print("\nThe coffee machine has:")
+        print(f"{self.water} of water")
+        print(f"{self.milk} of milk")
+        print(f"{self.coffee} of coffee beans")
+        print(f"{self.cups} of disposable cups")
+        print(f"${self.money} of money")
+
+
+CoffeeMachine().menu()
 
 
 
